@@ -13,11 +13,11 @@ const SortingApp: React.FC = (): JSX.Element => {
         <>
         <Layout>
         <Navbar data={data} setData={setData} />
-        <div className="flex place-content-center gap-x-1">
+        <div className="flex place-content-center gap-x-0.5">
             {data.map((value, idx) => (
                 <div
                     key={idx}
-                    className="w-0.5 text-white bg-black"
+                    className="w-0.5 text-white bg-gray-300"
                     style={{height: `${value}px`}} />
             ))}
         </div>

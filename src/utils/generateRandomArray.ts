@@ -1,4 +1,4 @@
-export const fillWithRandom = (max:number, min:number, quantity:number = 210):number[] => {
+export const fillWithRandom = (max:number, min:number, quantity:number = 250):number[] => {
     const results:number[] = [];
     for(let i = 0; i < quantity; i ++) {
         let candidate = Math.floor(Math.random() * (max - min + 1) + min)
