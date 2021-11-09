@@ -53,7 +53,7 @@ const SortingApp: React.FC = (): JSX.Element => {
 	}
 
 	// Sorting according to the algorithm
-	const handleSort = async () => {
+	const handleSort = () => {
 		
 		const sortAccOrder = (order:(number | number[] | null)[][]) => {
 			(function loop(i) {

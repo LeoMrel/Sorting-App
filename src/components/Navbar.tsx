@@ -6,10 +6,14 @@ import { algorithmsMap } from "./algorithms/AlgorithmsMap";
 
 
 interface IProps {
-    generateRandomArray: any,
-	handleLength: (event: any) => void,
-    handleSpeed: (event: any) => void,
-	handleAlgo: (event: any) => void,
+    generateRandomArray: (len: number | undefined, max: number, min: number) => void,
+	handleLength: (event: number) => void,
+    handleSpeed: (event: number) => void,
+	handleAlgo: (event: {
+        name: string;
+        complexity: string;
+        function: (array: number[]) => (number | number[] | null)[][];
+    }) => void,
     handleSort: () => void,
 	sorting: boolean,
 	completed: boolean,

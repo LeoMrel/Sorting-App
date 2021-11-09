@@ -7,7 +7,11 @@ interface DropdownProps {
         name: string;
         function: (array: number[]) => (number | number[] | null)[][];
     },
-    handleAlgo: (event: any) => void,
+    handleAlgo: (event: {
+        name: string;
+        complexity: string;
+        function: (array: number[]) => (number | number[] | null)[][];
+    }) => void,
     handleSort: () => void,
     completed: boolean,
     sorting: boolean
@@ -37,7 +41,11 @@ const Dropdown: React.FC<DropdownProps> = ({
                                    <DropdownMenu.Item
                                    key={element.name}
                                    className="hover:bg-gray-300 cursor-pointer p-2 rounded-md flex justify-between"
-                                   onClick={() => handleAlgo({name: element.name, function: element.function})}>
+                                   onClick={() => handleAlgo({
+                                       name: element.name, 
+                                       function: element.function, 
+                                       complexity: element.complexity
+                                       })}>
                                     <span className="font-semibold pr-3">{element.name}</span> <span className="text-sm italic font-semibold">{element.complexity}</span>
                                     </DropdownMenu.Item>
                                )
