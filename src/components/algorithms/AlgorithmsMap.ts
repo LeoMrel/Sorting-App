@@ -5,10 +5,10 @@ import insertionSort from "./InsertionSort";
 import selectionSort from "./SelectionSort";
 
 
-export const algorithmsMap: {name: string, function: any}[] = [
-    {name: "Bubble Sort", function: bubbleSort},
-    {name: "Quick Sort", function: quickSort},
-    {name: 'Merge Sort', function: mergeSort},
-    {name: 'Insertion Sort', function: insertionSort},
-    {name: 'Selection Sort', function: selectionSort}
+export const algorithmsMap: {name: string, function: any, complexity: string}[] = [
+    {name: "BubbleSort", function: bubbleSort, complexity: 'O(n^2)'},
+    {name: 'SelectionSort', function: selectionSort, complexity: 'O(n^2)'},
+    {name: 'InsertionSort', function: insertionSort, complexity: 'O(n^2)'},
+    {name: 'MergeSort', function: mergeSort, complexity: 'O(log(n))'},
+    {name: "QuickSort", function: quickSort, complexity: 'O(n^2)'}
 ]

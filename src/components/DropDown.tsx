@@ -2,7 +2,7 @@ import * as DropdownMenu from "@radix-ui/react-dropdown-menu"
 import React from "react"
 
 interface DropdownProps {
-    algosMap: {name: string, function: any}[],
+    algosMap: {name: string, function: any, complexity: string}[],
     algo: {
         name: string;
         function: (array: number[]) => (number | number[] | null)[][];
@@ -31,14 +31,14 @@ const Dropdown: React.FC<DropdownProps> = ({
                     className={`${sorting && 'cursor-not-allowed'} font-semibold w-40`}>
                         <p>{algo.name} ▾</p>
                     </DropdownMenu.Trigger>
-                        <DropdownMenu.Content className="bg-white w-40 mt-1 rounded-md flex flex-col">
+                        <DropdownMenu.Content className="bg-white w-46 mt-1 rounded-md flex flex-col">
                            {algosMap.map(element => {
                                return (
                                    <DropdownMenu.Item
                                    key={element.name}
-                                   className="hover:bg-gray-300 cursor-pointer p-2 rounded-md"
+                                   className="hover:bg-gray-300 cursor-pointer p-2 rounded-md flex justify-between"
                                    onClick={() => handleAlgo({name: element.name, function: element.function})}>
-                                       <span>{element.name}</span>
+                                    <span className="font-semibold pr-3">{element.name}</span> <span className="text-sm italic font-semibold">{element.complexity}</span>
                                     </DropdownMenu.Item>
                                )
                            })}

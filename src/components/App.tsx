@@ -38,7 +38,7 @@ const SortingApp: React.FC = (): JSX.Element => {
 	}, [len])
 
 	// setting the selected algorithm
-	const handleAlgo = (event: {name: string; function: (array: number[]) => (number | number[] | null)[][];}) => {
+	const handleAlgo = (event: {name: string; complexity: string; function: (array: number[]) => (number | number[] | null)[][];}) => {
 		setAlgo(event)
 	}
 
