@@ -7,7 +7,7 @@ document.title = "Sorting Visualizer";
 
 
 const SortingApp: React.FC = (): JSX.Element => {
-    // Generate random array of len elements with values from max to min
+    // Generate random array of len elements with values between min & max
 	const generateRandomArray = (len: number = 100, max:number, min:number) => {
 		setCompleted(false)
 		setSorting(false)
