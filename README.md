@@ -14,5 +14,5 @@
     <li>Quick Sort</li>
   </ul>
   
-  <h3>You can check out the demo <a>here</a></h3>
+  <h3>You can check out the demo <a href="https://leomrel.github.io/Sorting-Visualizer/">here</a></h3>
 </ul>
