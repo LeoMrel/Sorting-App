@@ -1,16 +1,25 @@
-export const bubbleSort =(unsortedArray:number[]) => {
-    const size = unsortedArray.length;
-    const result:number[] = [...unsortedArray]
-   
-    for(let j = 0; j < size - 1; j++) {
-        for(let i = 0; i < size - j - 1; i++) {
-            if(result[i] > result[i + 1]) {
-                let temp = result[i];
-                result[i] = result[i + 1];
-                result[i + 1] = temp
+import { swap } from "../../utils/swap"
+
+export const bubbleSort = (data: number[]) => {
+
+    const aux = [...data] // copying array
+    const order = []
+
+    let i, j
+    
+    for (i = 0; i < aux.length; i++) {
+        for (j = 0; j < aux.length - i - 1; j++) {
+
+            order.push([j, j + 1, null, null])                  // Compare
+            if (aux[j] > aux[j + 1]) {
+                swap(aux, j, j + 1)
+                order.push([j, j + 1, aux.slice(), null]) // Swap
             }
         }
+        order.push([null, null, null, j]) // j-th element is in correct position ( Sorted )
     }
 
-    return result;
+    return order
 }
+
+export default bubbleSort

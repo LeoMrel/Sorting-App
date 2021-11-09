@@ -1,49 +1,53 @@
-const defaultSortingAlgorithm = (a:number, b:number): number => {
-    if (a < b) {
-      return -1;
-    }
-    if (a > b) {
-      return 1;
-    }
-    return 0;
-  };
-  
+import { swap } from "../../utils/swap"
 
+let order: (number | number[] | null)[][] = []
 
-export const quickSort = (unsortedArray:number[], sortingAlgorithm = defaultSortingAlgorithm) => {
-    const sortedArray = [...unsortedArray];
+const partition = (aux: number[], l: number, r: number) => {
+    const pivot:(number | number[] | null)[] | number = l 
+    let j: (number | number[] | null)[] | number = l 
 
-    const swapArrayElements = (arrayToSwap:number[], i:number, j:number) => {
-      const a = arrayToSwap[i];
-      arrayToSwap[i] = arrayToSwap[j];
-      arrayToSwap[j] = a;
-    };
-  
-    const partition = (arrayToDivide:number[], start:number, end:number) => {
-      const pivot = arrayToDivide[end];
-      let splitIndex = start;
-      for (let j = start; j <= end - 1; j++) {
-        const sortValue = sortingAlgorithm(arrayToDivide[j], pivot);
-        if (sortValue === -1) {
-          swapArrayElements(arrayToDivide, splitIndex, j);
-          splitIndex++;
+    for(let i = l + 1;i<=r;i++){
+        order.push([i, pivot, null, null])
+        if(aux[i] < aux[pivot]){
+            j += 1 
+            swap(aux, i, j)
+            order.push([i, j, aux.slice(), null])
         }
-      }
-      swapArrayElements(arrayToDivide, splitIndex, end);
-      return splitIndex;
-    };
-  
-    // Recursively sort sub-arrays.
-    const recursiveSort = (arraytoSort:number[], start:number, end:number) => {
-      // stop condition
-      if (start < end) {
-        const pivotPosition = partition(arraytoSort, start, end);
-        recursiveSort(arraytoSort, start, pivotPosition - 1);
-        recursiveSort(arraytoSort, pivotPosition + 1, end);
-      }
-    };
-  
-    // Sort the entire array.
-    recursiveSort(sortedArray, 0, unsortedArray.length - 1);
-    return sortedArray;
-};
+    }
+
+    swap(aux, pivot, j)
+    order.push([pivot, j, aux.slice(), null])
+    order.push([null, null, null, j])
+    return j
+}
+
+
+const quickSortHelper = (aux: number[], l: number, r: number) => {
+    if(l >= r) {
+        if(l === r) order.push([null, null, null, l])
+        return
+    } 
+
+    const pivot = l + Math.floor(Math.random() * (r - l))
+
+    swap(aux, l, pivot)
+    order.push([l, pivot, aux.slice(), null])
+
+    const m = partition(aux, l, r)
+
+    quickSortHelper(aux, l, m - 1)
+    quickSortHelper(aux, m + 1, r)
+
+    return
+}
+
+const quickSort = (data: number[]) => {
+    const aux = [...data] // Copying array
+    order = []
+    
+    quickSortHelper(aux, 0, aux.length - 1)
+    
+    return order
+}
+
+export default quickSort
